@@ -31,6 +31,7 @@ export default function Signup() {
       const response = await createUser(formState);
 
       if (!response.ok) {
+        console.log(response);
         throw new Error("Failed to create user");
       }
 
