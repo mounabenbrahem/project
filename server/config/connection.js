@@ -1,15 +1,12 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
-mongoose.set("strictQuery", false);
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness-tracker", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}, err => {
-  if (err) throw err;
-  console.log('Connected to MongoDB!')
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI)
+    console.log("Database connected");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-);
-
-module.exports = mongoose.connection;
+module.exports = connectDB

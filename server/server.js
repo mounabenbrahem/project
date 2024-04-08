@@ -1,10 +1,13 @@
 const express = require("express");
 const path = require("path");
 const routes = require("./routes");
-const db = require("./config/connection");
+const connectDB = require("./config/connection");
+require("dotenv").config({ path: "./config/.env" })
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5001;
 const app = express();
+
+connectDB()
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,8 +23,6 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-db.once("open", () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
-  });
+app.listen(PORT, () => {
+  console.log(`API server running on port ${PORT}!`);
 });

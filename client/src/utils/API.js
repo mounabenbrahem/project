@@ -10,7 +10,7 @@ export const getMe = (token) => {
 };
 
 export const createUser = (userData) => {
-  return fetch("/api/user/login", {
+  return fetch("/api/user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userData),
@@ -18,7 +18,7 @@ export const createUser = (userData) => {
 };
 
 export const loginUser = (userData) => {
-  return fetch("/API/user/login", {
+  return fetch("/api/user/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userData),

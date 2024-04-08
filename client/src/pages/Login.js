@@ -29,6 +29,7 @@ export default function Login() {
 
       if (!response.ok) {
         const errorMessage = await response.text();
+        console.log(response);
         throw new Error("Failed to login: " + errorMessage);
       }
 

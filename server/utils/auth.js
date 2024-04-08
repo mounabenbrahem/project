@@ -1,10 +1,11 @@
-import { jwtDecode, InvalidTokenError } from 'jwt-decode';
-import jwt from "jsonwebtoken";
+// import { jwtDecode, InvalidTokenError } from 'jwt-decode';
+// import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken")
 
 const secret = "mysecretsdontmess";
 const expiration = "9h";
 
-export const authMiddleware = function (req, res, next) {
+exports.authMiddleware = function (req, res, next) {
   let token = req.body.token || req.query.token || req.headers.authorization;
 
   if (req.headers.authorization) {
@@ -25,7 +26,7 @@ export const authMiddleware = function (req, res, next) {
   }
 };
 
-export const signToken = function ({ username, email, _id }) {
+exports.signToken = function ({ username, email, _id }) {
   const payload = { username, email, _id };
 
   return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
